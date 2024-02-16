@@ -1,4 +1,5 @@
-import 'package:fasal_app/pages/HomePage/Components/progress_card.dart';
+import 'package:fasal_app/pages/HomePage/Components/Options/homepage_options.dart';
+import 'package:fasal_app/pages/HomePage/Components/Progress/progress_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,37 +27,37 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromARGB(255, 52, 78, 65),
                               ),
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(children: [
-                              Icon(Icons.location_on,
-                                  size: 24,
-                                  color: Color.fromARGB(255, 52, 78, 65)),
-                              Text("Location",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color.fromARGB(255, 52, 78, 65))),
-                              SizedBox(width: 6),
-                            ]),
-                            SizedBox(
-                              width: 280,
-                              child: Text(
-                                "Kochi,Kerala",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color.fromARGB(255, 123, 156, 41),
-                                ),
-                              ),
-                            ),
+
+                            // Row(children: [
+                            //   Icon(Icons.location_on,
+                            //       size: 24,
+                            //       color: Color.fromARGB(255, 52, 78, 65)),
+                            //   Text("Location",
+                            //       style: TextStyle(
+                            //           fontSize: 16,
+                            //           color: Color.fromARGB(255, 52, 78, 65))),
+                            //   SizedBox(width: 6),
+                            // ]),
+                            // SizedBox(
+                            //   width: 280,
+                            //   child: Text(
+                            //     "Kochi,Kerala",
+                            //     style: TextStyle(
+                            //       fontSize: 16,
+                            //       fontWeight: FontWeight.w600,
+                            //       color: Color.fromARGB(255, 123, 156, 41),
+                            //     ),
+                            //   ),
+                            // ),
                           ]),
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   ProgressCard(),
+                  SizedBox(height: 20),
+                  HomepageOptions()
                 ]))));
   }
 }
