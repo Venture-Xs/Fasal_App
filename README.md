@@ -1,4 +1,4 @@
-# fasal_app
+# Fasal App
 
 A new Flutter project.
 
