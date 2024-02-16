@@ -30,10 +30,14 @@ class _NavState extends State<Nav> {
         appBar: AppBar(
           elevation: 0,
           leading: Container(
-            padding: const EdgeInsets.all(5),
-            child: const CircleAvatar(),
+            padding: const EdgeInsets.all(10),
+            child: const CircleAvatar(
+              radius: 25,
+            ),
           ),
-          title: const Center(child: Text("Fasal")),
+          title: const Center(
+              child:
+                  Text("Fasal", style: TextStyle(fontWeight: FontWeight.bold))),
           actions: [
             IconButton(
               onPressed: () {},

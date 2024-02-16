@@ -7,16 +7,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 248, 251, 234),
+    return const Scaffold(
+        backgroundColor: Color.fromARGB(255, 248, 251, 234),
         body: SafeArea(
             child: Padding(
-                padding: const EdgeInsets.only(left: 24, top: 16, right: 24),
+                padding: EdgeInsets.only(left: 24, top: 16, right: 24),
                 child: Column(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      const Column(
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                           ]),
                     ],
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
                   ProgressCard(),

@@ -27,20 +27,19 @@ class OptionCard extends StatelessWidget {
         ),
         child: Column(children: [
           Container(
-            height: 106,
-            width: 160,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: const Color.fromARGB(255, 185, 179, 179),
-            ),
-            child: Center(child: Text("Image")),
-          ),
+              height: 106,
+              width: 160,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: const Color.fromARGB(255, 185, 179, 179),
+              ),
+              child: const Center(child: Text("Image"))),
           const SizedBox(
             height: 10,
           ),
           Center(
               child: Text(option,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: const Color.fromARGB(255, 52, 78, 65),
