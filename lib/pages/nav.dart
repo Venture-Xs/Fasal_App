@@ -27,13 +27,31 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          leading: Container(
+            padding: const EdgeInsets.all(5),
+            child: const CircleAvatar(),
+          ),
+          title: const Center(child: Text("Fasal")),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications_none_sharp,
+                color: Colors.black,
+              ),
+            ),
+          ],
+          backgroundColor: const Color.fromARGB(255, 248, 251, 234),
+        ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.business), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.school), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
           ],
           iconSize: 28,
           currentIndex: _selectedIndex,
