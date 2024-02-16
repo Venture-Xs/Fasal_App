@@ -1,3 +1,5 @@
+import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/humidity_status.dart';
+import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/todays.dart';
 import 'package:flutter/material.dart';
 
 class WeatherForecast extends StatefulWidget {
@@ -35,8 +37,19 @@ class _WeatherForecastState extends State<WeatherForecast> {
           backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
-        body: const Center(
-          child: Text("Weather Forecast Page"),
+        body: Container(
+          padding: EdgeInsets.fromLTRB(20, 20, 10, 10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                TodaysWeather(),
+                SizedBox(
+                  height: 20,
+                ),
+                HumidityStatus(),
+              ],
+            ),
+          ),
         ));
   }
 }
