@@ -8,34 +8,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProgressCard extends StatefulWidget {
-  const ProgressCard({super.key});
+  var todayTask;
+  ProgressCard({super.key, required this.todayTask});
 
   @override
   State<ProgressCard> createState() => _ProgressCardState();
 }
 
 class _ProgressCardState extends State<ProgressCard> {
-  var todayTask;
-  getCurrentStep() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final prevDate = prefs.getString('startDate');
-    final plan = prefs.getString('cropPlan');
-    if (plan != null && prevDate != null) {
-      DateTime previousDate = DateTime.parse(prevDate);
-      DateTime currentDate = DateTime.now();
-
-      int differenceInDays = currentDate.difference(previousDate).inDays;
-      List<dynamic> steps = jsonDecode(plan);
-      setState(() {
-        todayTask = steps[differenceInDays];
-      });
-    }
-  }
-
-  void initState() {
-    getCurrentStep();
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -75,7 +55,7 @@ class _ProgressCardState extends State<ProgressCard> {
               SizedBox(
                 width: 15,
               ),
-              todayTask == null
+              widget.todayTask == null
                   ? CircularProgressIndicator()
                   : Container(
                       width: MediaQuery.of(context).size.width -
@@ -88,7 +68,7 @@ class _ProgressCardState extends State<ProgressCard> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(todayTask["title"],
+                            Text(widget.todayTask["title"],
                                 style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -97,7 +77,7 @@ class _ProgressCardState extends State<ProgressCard> {
                               height: 5,
                             ),
                             Text(
-                              todayTask["instructions"],
+                              widget.todayTask["instructions"],
                               style: TextStyle(
                                   fontSize: 14,
                                   color: Color.fromARGB(255, 52, 78, 65)),
