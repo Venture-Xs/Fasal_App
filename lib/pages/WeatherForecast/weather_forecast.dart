@@ -40,14 +40,9 @@ class _WeatherForecastState extends State<WeatherForecast> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-<<<<<<< Updated upstream:lib/pages/WeatherForecast/weather_forecast.dart
                     SizedBox(
                       height: 20,
                     ),
-=======
-                    SizedBox(height: 20,),
-
->>>>>>> Stashed changes:lib/pages/HomePageOptions/WeatherForecast/weather_forecast.dart
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Align(
@@ -59,28 +54,21 @@ class _WeatherForecastState extends State<WeatherForecast> {
                         ),
                       ),
                     ),
-<<<<<<< Updated upstream:lib/pages/WeatherForecast/weather_forecast.dart
                     SizedBox(
                       height: 30,
                     ),
-                    Text(
-                      _weather?.areaName ?? "Error",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-=======
-                    SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [Text(
-                          _weather?.areaName ?? "Error",
-                          style:
-                              TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                        ),
-                      ]),
->>>>>>> Stashed changes:lib/pages/HomePageOptions/WeatherForecast/weather_forecast.dart
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              _weather?.areaName ?? "Error",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                          ]),
                     ),
                     _weatherIcon(),
                     SizedBox(

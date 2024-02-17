@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fasal_app/pages/HomePageOptions/MarketPrice/Components/crop_tile.dart';
 import 'package:fasal_app/pages/HomePageOptions/MarketPrice/Components/fetchprice.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +12,13 @@ class MarketPrice extends StatefulWidget {
 }
 
 class _MarketPriceState extends State<MarketPrice> {
+  var marketPrice = [];
   getPrice() async {
-    await fetchCrop();
+    var res = await fetchCrop();
+
+    setState(() {
+      marketPrice = jsonDecode(res);
+    });
   }
 
   @override
@@ -101,20 +108,25 @@ class _MarketPriceState extends State<MarketPrice> {
                 SizedBox(
                   height: 10,
                 ),
-
-                SingleChildScrollView(
-                  child: Container(
-                    height: MediaQuery.sizeOf(context).height * 0.63,
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 248, 251, 234)),
-                    child: ListView.builder(
-                      itemCount: 4,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CropTile();
-                      },
-                    ),
-                  ),
-                )
+                marketPrice.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SingleChildScrollView(
+                        child: Container(
+                          height: MediaQuery.sizeOf(context).height * 0.63,
+                          decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 248, 251, 234)),
+                          child: ListView.builder(
+                            itemCount: marketPrice.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return CropTile(
+                                  cropName: marketPrice[index]["commodity"],
+                                  price: marketPrice[index]["modal_price"]);
+                            },
+                          ),
+                        ),
+                      )
               ]),
         ));
   }

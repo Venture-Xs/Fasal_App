@@ -26,7 +26,7 @@ class _ChatBotState extends State<ChatPage> {
     super.initState();
     if (widget.inputString.isNotEmpty) {
       _sendMessage({'role': 'user', 'content': widget.inputString});
-      // animateMsg(widget.inputString);
+      animateMsg(widget.inputString);
     } else {
       _sendMessage(null);
     }
@@ -64,8 +64,11 @@ class _ChatBotState extends State<ChatPage> {
     _controller.clear();
   }
 
-  Future<String> animateMsg(String text) async {
+  animateMsg(String text) async {
     // Add a loading message
+    if (text.isEmpty) {
+      return 0;
+    }
     setState(() {
       _messages.add({
         'role': 'bot',
@@ -102,7 +105,7 @@ class _ChatBotState extends State<ChatPage> {
           color: Pallete.primaryColor.withOpacity(.1),
           headerText: 'AI Powered Agriculture Consultant',
           descText:
-              'AI-powered agriculture and finance assistant in Kisan Mitra is a versatile guide, providing real-time crop analytics, personalized financial insights.',
+              'AI-powered agriculture and finance assistant in Fasal is a versatile guide, providing real-time crop analytics, personalized financial insights.',
         ),
         Expanded(
           child: ListView.builder(

@@ -149,7 +149,7 @@ class DiseasePredictionState extends State<DiseasePrediction> {
                       MaterialPageRoute(
                           builder: (context) => Scaffold(
                               appBar: AppBar(
-                                title: Text('Kisan Mitra Chatbot'),
+                                title: Text('Fasal Chatbot'),
                               ),
                               body: ChatPage(
                                 inputString:

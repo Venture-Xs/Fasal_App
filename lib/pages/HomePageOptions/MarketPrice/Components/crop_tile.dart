@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CropTile extends StatefulWidget {
-  const CropTile({super.key});
+  String cropName, price;
+  CropTile({super.key, required this.cropName, required this.price});
 
   @override
   State<CropTile> createState() => _CropTileState();
@@ -23,7 +24,7 @@ class _CropTileState extends State<CropTile> {
         Column(
           children: [
             Text(
-              "Crop Name",
+              widget.cropName,
               style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
@@ -40,7 +41,7 @@ class _CropTileState extends State<CropTile> {
         Column(
           children: [
             Text(
-              "Price : 100",
+              "Price : ${widget.price}",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             )
           ],
