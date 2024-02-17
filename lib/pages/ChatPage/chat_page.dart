@@ -16,7 +16,7 @@ class ChatPage extends StatefulWidget {
 
 class _ChatBotState extends State<ChatPage> {
   String lastWords = '';
-  OpenAIService gpt = OpenAIService();
+  AIService gpt = AIService();
   //Contents of the chatbot
   String? generatedContent;
   String? generatedImageUrl;

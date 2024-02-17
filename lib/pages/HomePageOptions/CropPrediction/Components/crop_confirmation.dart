@@ -1,7 +1,12 @@
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fasal_app/API/gpt.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CropConfirmation extends StatefulWidget {
-  const CropConfirmation({super.key});
+  String name;
+  CropConfirmation({super.key, required this.name});
 
   @override
   State<CropConfirmation> createState() => _CropConfirmationState();
@@ -9,37 +14,50 @@ class CropConfirmation extends StatefulWidget {
 
 class _CropConfirmationState extends State<CropConfirmation> {
   //List of Steps
-  List<CalenderTile> steps = [
-    const CalenderTile(
-        date: " 10/03/2024",
-        title: "    ---     Soil preparation",
-        completed: true,
-        content:
-            "Begin soil preparation by plowing the rice fields to a depth of at least 15-20 centimeters using a tractor or plow, ensuring thorough soil aeration and weed incorporation. Subsequently, harrow the soil to break up clods and create a fine tilth suitable for rice seedbed establishment."),
-    const CalenderTile(
-        date: " 11/03/2024",
-        title: "    ---     Fertilize the fields",
-        completed: false,
-        content:
-            " Utilize the Variable Rate Application technique for precise application of nitrogen (N), phosphorus (P), and potassium (K) fertilizers to ensure even distribution and maximum absorption by rice plants."),
-    const CalenderTile(
-      date: " 12/03/2024",
-      title: "    ---     Water the fields",
-      completed: false,
-      content:
-          "Employ appropriate irrigation equipment such as furrow dikes or borders to guide the flow of water along designated channels, minimizing water wastage and ensuring uniform distribution across the field.",
-    ),
-    const CalenderTile(
-        date: " 13/03/2024",
-        title: "    ---     Pest detection",
-        completed: false,
-        content:
-            "Utilize integrated pest management techniques to deploy pheromone traps, sticky traps, or light traps strategically across the fields to monitor pest populations and identify potential threats early on."),
-  ];
+  List<dynamic> steps = [];
+
+  getPlan() async {
+    AIService ai = AIService();
+    final res = jsonDecode(await ai.planCrop(widget.name));
+    setState(() {
+      steps = res["detailed_cultivation_guide"];
+    });
+  }
+
+  confirmPlan() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString('cropPlan', jsonEncode(steps));
+
+    Navigator.popUntil(
+        context, ModalRoute.withName(Navigator.defaultRouteName));
+  }
+
+  void initState() {
+    getPlan();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: steps.isEmpty
+            ? null
+            : InkWell(
+                onTap: confirmPlan,
+                child: Container(
+                  width: 100,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 181, 203, 126),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: const Text(
+                    "Confirm",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 74, 90, 34), fontSize: 15),
+                  )),
+                ),
+              ),
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
@@ -69,31 +87,41 @@ class _CropConfirmationState extends State<CropConfirmation> {
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         body: Center(
-          child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-              child: SingleChildScrollView(
-                child: Column(children: [
-                  const Text(
-                    "Rice Cultivation Plan",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 52, 78, 65)),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height - 100,
-                    child: ListView.builder(
-                      itemCount: steps.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return steps[index];
-                      },
-                    ),
-                  ),
-                ]),
-              )),
+          child: steps.isEmpty
+              ? const CircularProgressIndicator(
+                  color: Color.fromARGB(255, 209, 229, 143),
+                )
+              : Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      const Text(
+                        "Rice Cultivation Plan",
+                        style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 52, 78, 65)),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height - 100,
+                        child: ListView.builder(
+                          itemCount: steps.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return CalenderTile(
+                                date: DateFormat('dd/MM/yy').format(
+                                    DateTime.now().add(
+                                        Duration(days: steps[index]["day"]))),
+                                content: steps[index]["instructions"],
+                                completed: false,
+                                title: "    ---     ${steps[index]["title"]}");
+                          },
+                        ),
+                      ),
+                    ]),
+                  )),
         ));
   }
 }
@@ -127,6 +155,12 @@ class CalenderTile extends StatelessWidget {
                 WidgetSpan(
                   child: Icon(completed ? Icons.check : Icons.schedule,
                       color: completed ? Colors.green : Colors.black, size: 20),
+                ),
+                WidgetSpan(
+                  child: SizedBox(
+                    width: 10,
+                    height: 10,
+                  ),
                 ),
                 TextSpan(
                   text: date + title,

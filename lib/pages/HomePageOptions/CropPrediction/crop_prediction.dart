@@ -1,6 +1,10 @@
+import 'package:fasal_app/API/gpt.dart';
+import 'package:fasal_app/Secrets/secrets.dart';
 import 'package:fasal_app/pages/HomePageOptions/CropPrediction/prediction_result.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CropPrediction extends StatefulWidget {
   const CropPrediction({super.key});
@@ -12,18 +16,20 @@ class CropPrediction extends StatefulWidget {
 class _CropPredictionState extends State<CropPrediction> {
   TextEditingController phController = TextEditingController();
   TextEditingController pController = TextEditingController();
+  TextEditingController kController = TextEditingController();
   TextEditingController nController = TextEditingController();
   TextEditingController humidController = TextEditingController();
   TextEditingController waterController = TextEditingController();
+  AIService ai = AIService();
+
+  void initState() {
+    pController.text = '20';
+    kController.text = '20';
+    nController.text = '30';
+  }
 
   @override
   Widget build(BuildContext context) {
-    String ph = phController.text;
-    String p = pController.text;
-    String n = nController.text;
-    String humid = humidController.text;
-    String water = waterController.text;
-
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -73,9 +79,6 @@ class _CropPredictionState extends State<CropPrediction> {
 
                 TextFormField(
                   controller: phController,
-                  onChanged: (value) {
-                    ph = value;
-                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -103,10 +106,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
-                  controller: phController,
-                  onChanged: (value) {
-                    n = value;
-                  },
+                  controller: nController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -134,10 +134,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
-                  controller: phController,
-                  onChanged: (value) {
-                    p = value;
-                  },
+                  controller: pController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -163,12 +160,8 @@ class _CropPredictionState extends State<CropPrediction> {
                       fontWeight: FontWeight.w700,
                       color: Color.fromARGB(255, 0, 0, 0),
                     )),
-
                 TextFormField(
-                  controller: phController,
-                  onChanged: (value) {
-                    p = value;
-                  },
+                  controller: kController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -197,9 +190,6 @@ class _CropPredictionState extends State<CropPrediction> {
 
                 TextFormField(
                   controller: phController,
-                  onChanged: (value) {
-                    humid = value;
-                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -228,9 +218,6 @@ class _CropPredictionState extends State<CropPrediction> {
 
                 TextFormField(
                   controller: phController,
-                  onChanged: (value) {
-                    water = value;
-                  },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -257,10 +244,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
-                  controller: phController,
-                  onChanged: (value) {
-                    water = value;
-                  },
+                  controller: humidController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -282,13 +266,16 @@ class _CropPredictionState extends State<CropPrediction> {
                 //Button
                 Center(
                     child: TextButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    final result = jsonDecode(await ai.predictCrop(
+                        nController.text, pController.text, kController.text));
                     //Put Condition here and pass result into the result page
                     Navigator.push(
                         context,
                         PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: PredicitionResult(),
+                            child:
+                                PredicitionResult(predictions: result["crops"]),
                             duration: const Duration(milliseconds: 250),
                             reverseDuration:
                                 const Duration(microseconds: 500)));
