@@ -14,7 +14,7 @@ class _NavState extends State<Nav> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const ChatPage(),
+    ChatPage(inputString: 'Farming Chat bot'),
     const ProfilePage(),
   ];
 
