@@ -15,19 +15,19 @@ class HomepageOptions extends StatefulWidget {
 
 class _HomepageOptionsState extends State<HomepageOptions> {
   List<OptionObject> options = [
-    OptionObject(
+    const OptionObject(
         optionname: "Crop Prediction",
         page: CropPrediction(),
         image: "assets/images/crop_prediction.jpg"),
-    OptionObject(
+    const OptionObject(
         optionname: "Weather Forecast",
         page: WeatherForecast(),
         image: "assets/images/Weather_logo.png"),
-    OptionObject(
-        optionname: "Market Price",
+    const OptionObject(
+        optionname: "MarketPlace",
         page: MarketPrice(),
         image: "assets/images/MarketPlace.png"),
-    OptionObject(
+    const OptionObject(
         optionname: "Credit Score",
         page: CreditScore(),
         image: "assets/images/Credit_assesment.png"),

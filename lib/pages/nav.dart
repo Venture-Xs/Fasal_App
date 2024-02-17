@@ -32,6 +32,7 @@ class _NavState extends State<Nav> {
           leading: Container(
             padding: const EdgeInsets.all(10),
             child: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/profile_photo.jpg"),
               radius: 25,
             ),
           ),
