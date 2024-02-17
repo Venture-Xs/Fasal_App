@@ -1,3 +1,4 @@
+import 'package:fasal_app/pages/DiseaseDetection/disease_detection.dart';
 import 'package:fasal_app/pages/WeatherForecast/weather_forecast.dart';
 import 'package:fasal_app/pages/ProfilePage/profile.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _NavState extends State<Nav> {
     ChatPage(inputString: 'Farming Chat bot'),
     const ProfilePage(),
     const WeatherForecast(),
+    const DiseasePrediction(),
   ];
 
   void setIndex(int index) {
@@ -70,6 +72,7 @@ class _NavState extends State<Nav> {
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.article), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.sunny), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.camera), label: ""),
           ],
           iconSize: 28,
           currentIndex: _selectedIndex,

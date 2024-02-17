@@ -1,4 +1,5 @@
 import 'package:fasal_app/pages/HomePageOptions/MarketPrice/Components/crop_tile.dart';
+import 'package:fasal_app/pages/HomePageOptions/MarketPrice/Components/fetchprice.dart';
 import 'package:flutter/material.dart';
 
 class MarketPrice extends StatefulWidget {
@@ -9,6 +10,15 @@ class MarketPrice extends StatefulWidget {
 }
 
 class _MarketPriceState extends State<MarketPrice> {
+  getPrice() async {
+    await fetchCrop();
+  }
+
+  @override
+  void initState() {
+    getPrice();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
