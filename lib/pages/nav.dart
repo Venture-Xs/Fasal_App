@@ -56,7 +56,7 @@ class _NavState extends State<Nav> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.article), label: ""),
           ],
           iconSize: 28,
           currentIndex: _selectedIndex,
