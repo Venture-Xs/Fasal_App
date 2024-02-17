@@ -53,17 +53,13 @@ class _WeatherForecastState extends State<WeatherForecast> {
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         body: Container(
-          padding: EdgeInsets.fromLTRB(20, 20, 10, 10),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                TodaysWeather(),
-                SizedBox(
-                  height: 20,
-                ),
-                HumidityStatus(),
-              ],
-            ),
+          width: MediaQuery.sizeOf(context).width,
+          height: MediaQuery.sizeOf(context).height,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [],
           ),
         ));
   }
