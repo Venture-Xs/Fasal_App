@@ -2,25 +2,23 @@ import 'package:fasal_app/pages/HomePageOptions/CropPrediction/Components/result
 import 'package:flutter/material.dart';
 
 class PredicitionResult extends StatefulWidget {
-  const PredicitionResult({super.key});
+  final predictions;
+  const PredicitionResult({super.key, required this.predictions});
 
   @override
   State<PredicitionResult> createState() => _PredicitionResultState();
 }
 
 class _PredicitionResultState extends State<PredicitionResult> {
-  List<Map> list = [
-    {
-      "number": "1",
-      "name": "Rice",
-      "desc": "Click to view Cultivation Plan",
-    },
-    {
-      "number": "2",
-      "name": "Wheat",
-      "desc": "Click to view Cultivation Plan",
-    }
-  ];
+  late List<dynamic> list;
+  void initState() {
+    setState(() {
+      list = widget.predictions
+          .map(
+              (crop) => {"name": crop["crop"], "desc": "This is the best crop"})
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +73,9 @@ class _PredicitionResultState extends State<PredicitionResult> {
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, int index) {
                     return ResultTile(
-                        number: list[index]["number"],
-                        name: list[index]["name"],
+                        number: (index + 1).toString(),
+                        name: list[index]["name"][0].toUpperCase() +
+                            list[index]["name"].substring(1),
                         desc: list[index]["desc"]);
                   },
                 ),

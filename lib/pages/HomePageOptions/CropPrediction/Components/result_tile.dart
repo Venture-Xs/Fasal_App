@@ -25,7 +25,7 @@ class _ResultTileState extends State<ResultTile> {
             context,
             PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: CropConfirmation(),
+                child: CropConfirmation(name: widget.name),
                 duration: const Duration(milliseconds: 250),
                 reverseDuration: const Duration(microseconds: 500)));
       },
