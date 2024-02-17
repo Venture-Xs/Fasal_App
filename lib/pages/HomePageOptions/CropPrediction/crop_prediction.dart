@@ -1,4 +1,6 @@
+import 'package:fasal_app/pages/HomePageOptions/CropPrediction/prediction_result.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 class CropPrediction extends StatefulWidget {
   const CropPrediction({super.key});
@@ -53,11 +55,11 @@ class _CropPredictionState extends State<CropPrediction> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Find Best Crop For Your Land",
+                Text("Farm Analysis",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: const Color.fromARGB(255, 52, 78, 65),
+                      color: Color.fromARGB(255, 52, 78, 65),
                     )),
                 const SizedBox(height: 20),
 
@@ -280,7 +282,17 @@ class _CropPredictionState extends State<CropPrediction> {
                 //Button
                 Center(
                     child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //Put Condition here and pass result into the result page
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: PredicitionResult(),
+                            duration: const Duration(milliseconds: 250),
+                            reverseDuration:
+                                const Duration(microseconds: 500)));
+                  },
                   style: ButtonStyle(),
                   child: Container(
                     width: double.infinity,

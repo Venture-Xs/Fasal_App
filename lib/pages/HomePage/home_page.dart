@@ -27,6 +27,17 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromARGB(255, 52, 78, 65),
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Current Croping Status",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromARGB(255, 64, 99, 82),
+                              ),
+                            )
                           ]),
                     ],
                   ),
