@@ -1,3 +1,4 @@
+import 'package:fasal_app/pages/HomePageOptions/MarketPrice/Components/crop_tile.dart';
 import 'package:flutter/material.dart';
 
 class MarketPrice extends StatefulWidget {
@@ -76,6 +77,33 @@ class _MarketPriceState extends State<MarketPrice> {
                     ),
                   ),
                 ),
+
+                //List of Crops
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Market Price in Kollam",
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: const Color.fromARGB(255, 52, 78, 65)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.sizeOf(context).height * 0.63,
+                    decoration: BoxDecoration(color: Colors.amber),
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CropTile();
+                      },
+                    ),
+                  ),
+                )
               ]),
         ));
   }
