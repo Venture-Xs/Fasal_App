@@ -1,9 +1,7 @@
 import 'package:fasal_app/constants.dart';
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/humidity_status.dart';
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/todays.dart';
 import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
 import 'package:intl/intl.dart';
+import 'package:weather/weather.dart';
 
 class WeatherForecast extends StatefulWidget {
   const WeatherForecast({super.key});
@@ -16,9 +14,9 @@ class _WeatherForecastState extends State<WeatherForecast> {
   final WeatherFactory wf = new WeatherFactory(OPEN_WEATHER_API_KEY);
   Weather? _weather;
 
-  void initState() async {
+  void initState() {
     super.initState();
-    await wf.currentWeatherByCityName("Kollam").then((value) {
+    wf.currentWeatherByCityName("Kollam").then((value) {
       setState(() {
         _weather = value;
       });
