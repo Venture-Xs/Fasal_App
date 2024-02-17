@@ -27,28 +27,6 @@ class HomePage extends StatelessWidget {
                                 color: Color.fromARGB(255, 52, 78, 65),
                               ),
                             ),
-
-                            // Row(children: [
-                            //   Icon(Icons.location_on,
-                            //       size: 24,
-                            //       color: Color.fromARGB(255, 52, 78, 65)),
-                            //   Text("Location",
-                            //       style: TextStyle(
-                            //           fontSize: 16,
-                            //           color: Color.fromARGB(255, 52, 78, 65))),
-                            //   SizedBox(width: 6),
-                            // ]),
-                            // SizedBox(
-                            //   width: 280,
-                            //   child: Text(
-                            //     "Kochi,Kerala",
-                            //     style: TextStyle(
-                            //       fontSize: 16,
-                            //       fontWeight: FontWeight.w600,
-                            //       color: Color.fromARGB(255, 123, 156, 41),
-                            //     ),
-                            //   ),
-                            // ),
                           ]),
                     ],
                   ),

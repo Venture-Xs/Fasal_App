@@ -16,7 +16,7 @@ class HomepageOptions extends StatefulWidget {
 class _HomepageOptionsState extends State<HomepageOptions> {
   List<OptionObject> options = [
     const OptionObject(
-        optionname: "Crop Prediction",
+        optionname: "New Crop Plan",
         page: CropPrediction(),
         image: "assets/images/crop_prediction.jpg"),
     const OptionObject(
