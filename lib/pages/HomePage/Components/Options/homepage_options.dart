@@ -3,7 +3,7 @@ import 'package:fasal_app/pages/HomePage/Components/Options/optioncard.dart';
 import 'package:fasal_app/pages/HomePageOptions/CreditScore/credit_score.dart';
 import 'package:fasal_app/pages/HomePageOptions/CropPrediction/crop_prediction.dart';
 import 'package:fasal_app/pages/HomePageOptions/MarketPrice/market_price.dart';
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/weather_forecast.dart';
+import 'package:fasal_app/pages/WeatherForecast/weather_forecast.dart';
 import 'package:flutter/material.dart';
 
 class HomepageOptions extends StatefulWidget {
@@ -19,18 +19,20 @@ class _HomepageOptionsState extends State<HomepageOptions> {
         optionname: "New Crop Plan",
         page: CropPrediction(),
         image: "assets/images/crop_prediction.jpg"),
-    const OptionObject(
-        optionname: "Weather Forecast",
-        page: WeatherForecast(),
-        image: "assets/images/Weather_logo.png"),
+
     const OptionObject(
         optionname: "MarketPlace",
         page: MarketPrice(),
         image: "assets/images/MarketPlace.png"),
-    const OptionObject(
-        optionname: "Credit Score",
-        page: CreditScore(),
-        image: "assets/images/Credit_assesment.png"),
+    // const OptionObject(
+    //     optionname: "Credit Score",
+    //     page: CreditScore(),
+    //     image: "assets/images/Credit_assesment.png"),
+
+    // const OptionObject(
+    //     optionname: "Weather Forecast",
+    //     page: WeatherForecast(),
+    //     image: "assets/images/Weather_logo.png"),
   ];
 
   @override
@@ -38,7 +40,7 @@ class _HomepageOptionsState extends State<HomepageOptions> {
     return SizedBox(
       width: MediaQuery.of(context).size.width - 48,
       child: GridView.builder(
-        itemCount: 4,
+        itemCount: options.length,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

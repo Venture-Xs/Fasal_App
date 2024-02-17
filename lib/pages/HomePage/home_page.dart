@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Hello Abhinab",
+                              "Hello Abhinab 👋",
                               style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w600,
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "Current Croping Status",
+                              "Today's Task",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
@@ -46,6 +46,10 @@ class HomePage extends StatelessWidget {
                   ),
                   ProgressCard(),
                   SizedBox(height: 20),
+                  ProgressCard(),
+                  SizedBox(
+                    height: 20,
+                  ),
                   HomepageOptions()
                 ]))));
   }

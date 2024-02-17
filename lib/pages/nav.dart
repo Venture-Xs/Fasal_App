@@ -1,3 +1,4 @@
+import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/weather_forecast.dart';
 import 'package:fasal_app/pages/ProfilePage/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class _NavState extends State<Nav> {
     const HomePage(),
     ChatPage(inputString: 'Farming Chat bot'),
     const ProfilePage(),
+    const WeatherForecast(),
   ];
 
   void setIndex(int index) {
@@ -61,12 +63,13 @@ class _NavState extends State<Nav> {
           backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
-        body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+        body: Container(child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.article), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.sunny), label: ""),
           ],
           iconSize: 28,
           currentIndex: _selectedIndex,
