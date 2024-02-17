@@ -35,8 +35,48 @@ class _MarketPriceState extends State<MarketPrice> {
           backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
-        body: const Center(
-          child: Text("Market Price Page"),
+        body: Container(
+          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Market Price",
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0XFF344E41)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+
+                //Search Box
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 2,
+                  ),
+                  child: TextField(
+                    style: const TextStyle(color: Color(0xFF7E7E7E)),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xFFFFFFFF),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        borderSide: const BorderSide(color: Color(0xFF004A62)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                        borderSide: const BorderSide(color: Color(0xFFD1E58F)),
+                      ),
+                      hintText: "Search Crop",
+                      suffixIcon: Icon(Icons.search),
+                      suffixIconColor: Color(0XFF344E41),
+                    ),
+                  ),
+                ),
+              ]),
         ));
   }
 }
