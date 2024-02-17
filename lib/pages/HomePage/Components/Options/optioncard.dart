@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 class OptionCard extends StatelessWidget {
-  String option;
+  String option, imageLocation;
   Widget page;
-  OptionCard({super.key, required this.option, required this.page});
+  OptionCard(
+      {super.key,
+      required this.option,
+      required this.page,
+      required this.imageLocation});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +31,17 @@ class OptionCard extends StatelessWidget {
         ),
         child: Column(children: [
           Container(
-              height: 106,
-              width: 160,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: const Color.fromARGB(255, 185, 179, 179),
+            height: 106,
+            width: 160,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: const Color.fromARGB(255, 185, 179, 179),
+              image: DecorationImage(
+                image: AssetImage(imageLocation),
+                fit: BoxFit.cover,
               ),
-              child: const Center(child: Text("Image"))),
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),

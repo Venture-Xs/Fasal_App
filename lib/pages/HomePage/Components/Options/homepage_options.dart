@@ -38,6 +38,7 @@ class _HomepageOptionsState extends State<HomepageOptions> {
           return OptionCard(
             option: options[index].optionname,
             page: options[index].page,
+            imageLocation: 'assets/images/crop_prediction.jpg',
           );
         },
       ),
