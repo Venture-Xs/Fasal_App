@@ -15,30 +15,42 @@ class HomepageOptions extends StatefulWidget {
 
 class _HomepageOptionsState extends State<HomepageOptions> {
   List<OptionObject> options = [
-    OptionObject(optionname: "Crop Prediction", page: CropPrediction()),
-    OptionObject(optionname: "Weather Forecast", page: WeatherForecast()),
-    OptionObject(optionname: "Market Price", page: MarketPrice()),
-    OptionObject(optionname: "Credit Score", page: CreditScore()),
+    OptionObject(
+        optionname: "Crop Prediction",
+        page: CropPrediction(),
+        image: "assets/images/crop_prediction.jpg"),
+    OptionObject(
+        optionname: "Weather Forecast",
+        page: WeatherForecast(),
+        image: "assets/images/Weather_logo.png"),
+    OptionObject(
+        optionname: "Market Price",
+        page: MarketPrice(),
+        image: "assets/images/MarketPlace.png"),
+    OptionObject(
+        optionname: "Credit Score",
+        page: CreditScore(),
+        image: "assets/images/Credit_assesment.png"),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width - 48,
       child: GridView.builder(
         itemCount: 4,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisSpacing: 15,
             childAspectRatio: 1,
             crossAxisCount: 2,
-            mainAxisSpacing: 20),
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 20),
         itemBuilder: (context, index) {
           return OptionCard(
             option: options[index].optionname,
             page: options[index].page,
-            imageLocation: 'assets/images/crop_prediction.jpg',
+            imageLocation: options[index].image,
           );
         },
       ),
