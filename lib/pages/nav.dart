@@ -1,3 +1,4 @@
+import 'package:fasal_app/pages/ProfilePage/profile.dart';
 import 'package:flutter/material.dart';
 
 import "pages.dart";
@@ -27,13 +28,22 @@ class _NavState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: ProfileScreen(),
         appBar: AppBar(
           elevation: 0,
-          leading: Container(
-            padding: const EdgeInsets.all(10),
-            child: const CircleAvatar(
-              backgroundImage: AssetImage("assets/images/profile_photo.jpg"),
-              radius: 25,
+          leading: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: const CircleAvatar(
+                backgroundImage: AssetImage("assets/images/profile_photo.jpg"),
+                radius: 25,
+              ),
             ),
           ),
           title: const Center(
