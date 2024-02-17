@@ -75,18 +75,18 @@ class _ChatBotState extends State<ChatPage> {
 
     try {
       // Wait for the Future to complete
-      final speech = await gpt.postToFarmer(text);
+      final response = await gpt.postToFarmer(text);
 
       // Once the Future is complete, remove the loading message and add new
       setState(() {
         _messages.removeLast();
         _messages.add({
           'role': 'bot',
-          'content': speech,
+          'content': response,
         });
       });
 
-      return speech;
+      return response;
     } catch (e) {
       // Handle any errors here
       print('Caught error: $e');
