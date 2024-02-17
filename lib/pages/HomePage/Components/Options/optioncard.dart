@@ -32,9 +32,10 @@ class OptionCard extends StatelessWidget {
         child: Column(children: [
           Container(
             height: 106,
-            width: 160,
+            width: double.infinity,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15), topRight: Radius.circular(15)),
               color: const Color.fromARGB(255, 185, 179, 179),
               image: DecorationImage(
                 image: AssetImage(imageLocation),
@@ -50,7 +51,7 @@ class OptionCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: const Color.fromARGB(255, 52, 78, 65),
+                    color: Color.fromARGB(255, 52, 78, 65),
                   )))
         ]),
       ),
