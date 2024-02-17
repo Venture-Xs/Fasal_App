@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:fasal_app/pages/ProgressPage/progress.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fasal_app/API/gpt.dart';
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 
 class CropConfirmation extends StatefulWidget {
@@ -28,6 +30,9 @@ class _CropConfirmationState extends State<CropConfirmation> {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     await prefs.setString('cropPlan', jsonEncode(steps));
+    await prefs.setString(
+        'startDate', DateFormat('yyyy-MM-dd').format(DateTime.now()));
+    await prefs.setString('currentCrop', widget.name);
 
     Navigator.popUntil(
         context, ModalRoute.withName(Navigator.defaultRouteName));
@@ -95,9 +100,9 @@ class _CropConfirmationState extends State<CropConfirmation> {
                   padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                   child: SingleChildScrollView(
                     child: Column(children: [
-                      const Text(
-                        "Rice Cultivation Plan",
-                        style: TextStyle(
+                      Text(
+                        "${widget.name} Cultivation Plan",
+                        style: const TextStyle(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 52, 78, 65)),
@@ -122,64 +127,6 @@ class _CropConfirmationState extends State<CropConfirmation> {
                       ),
                     ]),
                   )),
-        ));
-  }
-}
-
-//Widget for displaying the steps in the calender
-class CalenderTile extends StatelessWidget {
-  final String date;
-  final String title;
-  final String content;
-  final bool completed;
-
-  const CalenderTile(
-      {super.key,
-      required this.date,
-      required this.content,
-      required this.completed,
-      required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: ExpansionTile(
-          title: RichText(
-            text: TextSpan(
-              children: [
-                WidgetSpan(
-                  child: Icon(completed ? Icons.check : Icons.schedule,
-                      color: completed ? Colors.green : Colors.black, size: 20),
-                ),
-                WidgetSpan(
-                  child: SizedBox(
-                    width: 10,
-                    height: 10,
-                  ),
-                ),
-                TextSpan(
-                  text: date + title,
-                  style: DefaultTextStyle.of(context).style,
-                ),
-              ],
-            ),
-          ),
-          children: <Widget>[
-            Container(
-                padding: const EdgeInsets.all(10),
-                child: Text(
-                  content,
-                  style: const TextStyle(
-                    fontSize: 15,
-                    color: Colors.black,
-                  ),
-                )),
-          ],
         ));
   }
 }

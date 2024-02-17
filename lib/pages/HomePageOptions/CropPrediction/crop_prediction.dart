@@ -23,9 +23,10 @@ class _CropPredictionState extends State<CropPrediction> {
   AIService ai = AIService();
 
   void initState() {
-    pController.text = '20';
-    kController.text = '20';
-    nController.text = '30';
+    pController.text = '2';
+    kController.text = '15';
+    nController.text = '15';
+    phController.text = '6';
   }
 
   @override
@@ -78,6 +79,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: phController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -106,6 +108,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: nController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -134,6 +137,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: pController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -161,6 +165,7 @@ class _CropPredictionState extends State<CropPrediction> {
                       color: Color.fromARGB(255, 0, 0, 0),
                     )),
                 TextFormField(
+                  enabled: false,
                   controller: kController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -189,6 +194,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: phController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -217,6 +223,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: phController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -244,6 +251,7 @@ class _CropPredictionState extends State<CropPrediction> {
                     )),
 
                 TextFormField(
+                  enabled: false,
                   controller: humidController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
