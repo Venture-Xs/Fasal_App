@@ -51,8 +51,11 @@ class _CreditScoreState extends State<CreditScore> {
                             0.5, // Optional: use this to set a progress value (0.0 to 1.0)
                         backgroundColor: Colors
                             .grey, // Optional: use this to set the background color
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors
-                            .blue), // Optional: use this to set the progress color
+                        valueColor: AlwaysStoppedAnimation<Color>(Color.fromARGB(
+                            255,
+                            209,
+                            229,
+                            143)), // Optional: use this to set the progress color
                         strokeWidth:
                             10.0, // Optional: use this to set the width of the progress bar
                       )),

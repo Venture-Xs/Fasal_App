@@ -1,9 +1,7 @@
 import 'package:fasal_app/constants.dart';
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/humidity_status.dart';
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/Components/todays.dart';
 import 'package:flutter/material.dart';
-import 'package:weather/weather.dart';
 import 'package:intl/intl.dart';
+import 'package:weather/weather.dart';
 
 class WeatherForecast extends StatefulWidget {
   const WeatherForecast({super.key});
