@@ -50,7 +50,7 @@ class _CropPredictionState extends State<CropPrediction> {
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         body: Container(
-          padding: EdgeInsets.fromLTRB(20, 20, 10, 10),
+          padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

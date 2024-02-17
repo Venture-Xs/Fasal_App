@@ -14,13 +14,13 @@ class _ProgressCardState extends State<ProgressCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: ProgressPage(),
-                duration: const Duration(milliseconds: 250),
-                reverseDuration: const Duration(microseconds: 500)));
+        // Navigator.push(
+        //     context,
+        //     PageTransition(
+        //         type: PageTransitionType.rightToLeft,
+        //         child: ProgressPage(),
+        //         duration: const Duration(milliseconds: 250),
+        //         reverseDuration: const Duration(microseconds: 500)));
       },
       child: Container(
           height: 117,

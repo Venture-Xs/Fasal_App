@@ -13,12 +13,12 @@ class _PredicitionResultState extends State<PredicitionResult> {
     {
       "number": "1",
       "name": "Rice",
-      "desc": "Rice is best suited for your land.",
+      "desc": "Click to view Cultivation Plan",
     },
     {
       "number": "2",
       "name": "Wheat",
-      "desc": "Wheat is second best suited crop for your land.",
+      "desc": "Click to view Cultivation Plan",
     }
   ];
 
