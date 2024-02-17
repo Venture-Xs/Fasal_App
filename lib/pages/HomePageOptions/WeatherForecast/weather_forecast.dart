@@ -16,9 +16,9 @@ class _WeatherForecastState extends State<WeatherForecast> {
   final WeatherFactory wf = new WeatherFactory(OPEN_WEATHER_API_KEY);
   Weather? _weather;
 
-  void initState() async {
+  void initState() {
     super.initState();
-    await wf.currentWeatherByCityName("Kollam").then((value) {
+    wf.currentWeatherByCityName("Kollam").then((value) {
       setState(() {
         _weather = value;
       });
@@ -52,34 +52,41 @@ class _WeatherForecastState extends State<WeatherForecast> {
           backgroundColor: const Color.fromARGB(255, 248, 251, 234),
         ),
         backgroundColor: const Color.fromARGB(255, 248, 251, 234),
-        body: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Text(
-                _weather?.areaName ?? "Error",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              ),
-              _dateTimeInfo(),
-              SizedBox(
-                height: 10,
-              ),
-              _weatherIcon(),
-              const SizedBox(
-                height: 10,
-              ),
-              _temperature(),
-              const SizedBox(
-                height: 10,
-              ),
-              _extraInfo(),
-            ],
-          ),
-        ));
+        body: _weather == null
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 209, 229, 143),
+                ),
+              )
+            : SizedBox(
+                width: MediaQuery.sizeOf(context).width,
+                height: MediaQuery.sizeOf(context).height,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      _weather?.areaName ?? "Error",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    ),
+                    _dateTimeInfo(),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    _weatherIcon(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    _temperature(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    _extraInfo(),
+                  ],
+                ),
+              ));
   }
 
   //Time and Date
