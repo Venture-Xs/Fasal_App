@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:fasal_app/pages/HomePage/Components/Progress/progress_detail.dart';
 import 'package:fasal_app/pages/ProgressPage/progress.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProgressCard extends StatefulWidget {
   const ProgressCard({super.key});
@@ -11,6 +15,27 @@ class ProgressCard extends StatefulWidget {
 }
 
 class _ProgressCardState extends State<ProgressCard> {
+  var todayTask;
+  getCurrentStep() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final prevDate = prefs.getString('startDate');
+    final plan = prefs.getString('cropPlan');
+    if (plan != null && prevDate != null) {
+      DateTime previousDate = DateTime.parse(prevDate);
+      DateTime currentDate = DateTime.now();
+
+      int differenceInDays = currentDate.difference(previousDate).inDays;
+      List<dynamic> steps = jsonDecode(plan);
+      setState(() {
+        todayTask = steps[differenceInDays];
+      });
+    }
+  }
+
+  void initState() {
+    getCurrentStep();
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -24,7 +49,6 @@ class _ProgressCardState extends State<ProgressCard> {
                 reverseDuration: const Duration(microseconds: 500)));
       },
       child: Container(
-          height: 117,
           width: MediaQuery.of(context).size.width - 48,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -37,7 +61,7 @@ class _ProgressCardState extends State<ProgressCard> {
                 height: 80,
                 width: 80,
                 child: Center(
-                  child: Text("17",
+                  child: Text(DateFormat('dd').format(DateTime.now()),
                       style: TextStyle(
                           fontSize: 42,
                           fontWeight: FontWeight.bold,
@@ -51,31 +75,37 @@ class _ProgressCardState extends State<ProgressCard> {
               SizedBox(
                 width: 15,
               ),
-              Container(
-                width:
-                    MediaQuery.of(context).size.width - 48 - 80 - 15 - 20 - 20,
-                child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Land Preparation",
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 52, 78, 65))),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Plowing and leveling the field to create a suitable seedbed.",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 52, 78, 65)),
-                        softWrap: true,
-                        maxLines: 2,
-                      )
-                    ]),
-              )
+              todayTask == null
+                  ? CircularProgressIndicator()
+                  : Container(
+                      width: MediaQuery.of(context).size.width -
+                          48 -
+                          80 -
+                          15 -
+                          20 -
+                          20,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(todayTask["title"],
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color.fromARGB(255, 52, 78, 65))),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              todayTask["instructions"],
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 52, 78, 65)),
+                              softWrap: true,
+                              maxLines: 2,
+                            )
+                          ]),
+                    )
             ],
           )
 
