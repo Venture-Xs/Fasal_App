@@ -95,7 +95,8 @@ class _MarketPriceState extends State<MarketPrice> {
                 SingleChildScrollView(
                   child: Container(
                     height: MediaQuery.sizeOf(context).height * 0.63,
-                    decoration: BoxDecoration(color: Colors.amber),
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 248, 251, 234)),
                     child: ListView.builder(
                       itemCount: 4,
                       itemBuilder: (BuildContext context, int index) {

@@ -12,8 +12,9 @@ class _CropTileState extends State<CropTile> {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
+      margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
       decoration: BoxDecoration(
-        color: Colors.green,
+        color: Color(0xFFD1E58F),
         borderRadius: BorderRadius.circular(15),
       ),
       padding: const EdgeInsets.only(left: 10, top: 10),
@@ -23,9 +24,16 @@ class _CropTileState extends State<CropTile> {
           children: [
             Text(
               "Crop Name",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0XFF344E41)),
             ),
           ],
+        ),
+
+        SizedBox(
+          width: 20,
         ),
 
         //Column2
@@ -33,7 +41,7 @@ class _CropTileState extends State<CropTile> {
           children: [
             Text(
               "Price : 100",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             )
           ],
         )
