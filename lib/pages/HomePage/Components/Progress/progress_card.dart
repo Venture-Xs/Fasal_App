@@ -1,3 +1,4 @@
+import 'package:fasal_app/pages/HomePage/Components/Progress/progress_detail.dart';
 import 'package:fasal_app/pages/ProgressPage/progress.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -14,13 +15,13 @@ class _ProgressCardState extends State<ProgressCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     PageTransition(
-        //         type: PageTransitionType.rightToLeft,
-        //         child: ProgressPage(),
-        //         duration: const Duration(milliseconds: 250),
-        //         reverseDuration: const Duration(microseconds: 500)));
+        Navigator.push(
+            context,
+            PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: ProgressDetail(),
+                duration: const Duration(milliseconds: 250),
+                reverseDuration: const Duration(microseconds: 500)));
       },
       child: Container(
           height: 117,

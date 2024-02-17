@@ -12,26 +12,26 @@ class _ProgressPageState extends State<ProgressPage> {
   List<CalenderTile> steps = [
     const CalenderTile(
         date: " 10/03/2024",
-        title: "    ---     Soil preparation",
+        title: " --- Soil preparation",
         completed: true,
         content:
             "Begin soil preparation by plowing the rice fields to a depth of at least 15-20 centimeters using a tractor or plow, ensuring thorough soil aeration and weed incorporation. Subsequently, harrow the soil to break up clods and create a fine tilth suitable for rice seedbed establishment."),
     const CalenderTile(
         date: " 11/03/2024",
-        title: "    ---     Fertilize the fields",
+        title: " --- Fertilize the fields",
         completed: false,
         content:
             " Utilize the Variable Rate Application technique for precise application of nitrogen (N), phosphorus (P), and potassium (K) fertilizers to ensure even distribution and maximum absorption by rice plants."),
     const CalenderTile(
       date: " 12/03/2024",
-      title: "    ---     Water the fields",
+      title: " --- Water the fields",
       completed: false,
       content:
           "Employ appropriate irrigation equipment such as furrow dikes or borders to guide the flow of water along designated channels, minimizing water wastage and ensuring uniform distribution across the field.",
     ),
     const CalenderTile(
         date: " 13/03/2024",
-        title: "    ---     Pest detection",
+        title: " --- Pest detection",
         completed: false,
         content:
             "Utilize integrated pest management techniques to deploy pheromone traps, sticky traps, or light traps strategically across the fields to monitor pest populations and identify potential threats early on."),
