@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fasal_app/API/gpt.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,10 +19,18 @@ class _CropConfirmationState extends State<CropConfirmation> {
   getPlan() async {
     AIService ai = AIService();
     final res = jsonDecode(await ai.planCrop(widget.name));
-    print(res["detailed_cultivation_guide"][19]);
     setState(() {
       steps = res["detailed_cultivation_guide"];
     });
+  }
+
+  confirmPlan() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setString('cropPlan', jsonEncode(steps));
+
+    Navigator.popUntil(
+        context, ModalRoute.withName(Navigator.defaultRouteName));
   }
 
   void initState() {
@@ -32,6 +40,24 @@ class _CropConfirmationState extends State<CropConfirmation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: steps.isEmpty
+            ? null
+            : InkWell(
+                onTap: confirmPlan,
+                child: Container(
+                  width: 100,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 181, 203, 126),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                      child: const Text(
+                    "Confirm",
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 74, 90, 34), fontSize: 15),
+                  )),
+                ),
+              ),
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
