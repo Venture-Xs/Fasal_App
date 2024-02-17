@@ -45,8 +45,6 @@ class HomePage extends StatelessWidget {
                     height: 10,
                   ),
                   ProgressCard(),
-                  SizedBox(height: 20),
-                  ProgressCard(),
                   SizedBox(
                     height: 20,
                   ),

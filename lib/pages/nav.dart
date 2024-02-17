@@ -1,4 +1,4 @@
-import 'package:fasal_app/pages/HomePageOptions/WeatherForecast/weather_forecast.dart';
+import 'package:fasal_app/pages/WeatherForecast/weather_forecast.dart';
 import 'package:fasal_app/pages/ProfilePage/profile.dart';
 import 'package:flutter/material.dart';
 
