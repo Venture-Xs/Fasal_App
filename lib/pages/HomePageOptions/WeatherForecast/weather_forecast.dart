@@ -61,20 +61,28 @@ class _WeatherForecastState extends State<WeatherForecast> {
                 height: MediaQuery.sizeOf(context).height,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Today's Weather:",
+                          style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30,),
                     Text(
                       _weather?.areaName ?? "Error",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                     ),
-                    _dateTimeInfo(),
-                    SizedBox(
-                      height: 10,
-                    ),
                     _weatherIcon(),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     _temperature(),
@@ -82,6 +90,10 @@ class _WeatherForecastState extends State<WeatherForecast> {
                       height: 10,
                     ),
                     _extraInfo(),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    _dateTimeInfo(),
                   ],
                 ),
               ));
